@@ -1,0 +1,28 @@
+spring:
+  profiles: chaos
+
+server:
+  port: 1012   # 👈 Add your desired application port here
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "chaosmonkey"
+  endpoint:
+    health:
+      show-details: always
+
+chaos:
+  monkey:
+    enabled: true
+    watcher:
+      controller: true
+      service: true
+      repository: true
+    assaults:
+      latencyActive: true
+      latencyRangeStart: 1000
+      latencyRangeEnd: 3000
+      level: 1
